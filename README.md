@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 KAIM Week 0 - Solar Data Analysis
 This project is part of the 10 Academy Week 0 Challenge. The goal is to analyze, clean, and draw insights from solar radiation data to support MoonLight Energy Solutions in making data-driven decisions about solar farm installations.
 
@@ -49,3 +50,6 @@ Run the Jupyter Notebook to view the analysis:
 bash
 Copy code
 jupyter notebook notebooks/benin.ipynb
+=======
+intial commit testing 
+>>>>>>> 6370623cde361e2118c8ef3012de8b10474eca19
