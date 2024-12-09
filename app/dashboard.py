@@ -8,7 +8,7 @@ from analysis_tools import (
 datasets = {
     "Benin - Malanville": "../data/benin-malanville.csv",
     "Sierra Leone - Bumbuna": "../data/sierraleone-bumbuna.csv",
-    "Togo - Daaong-QC": "../data/togo-daaong-qc.csv"
+    "Togo - Dapaong-QC": "../data/togo-dapaong_qc.csv"
 }
 
 # Sidebar
@@ -28,6 +28,9 @@ data_cleaned = clean_data(data, columns_to_check)
 st.write("Dataset Preview:")
 st.dataframe(data_cleaned.head())
 
+# Placeholder for displaying analysis
+analysis_output = st.empty()
+
 # Analysis Options
 analysis_choice = st.sidebar.selectbox("Choose Analysis", [
     "Time Series Plot",
@@ -39,27 +42,35 @@ analysis_choice = st.sidebar.selectbox("Choose Analysis", [
     "Bubble Chart"
 ])
 
+# Display appropriate analysis
 if analysis_choice == "Time Series Plot":
-    plot_time_series(data_cleaned, "GHI", "GHI Over Time", "Time", "GHI (W/m²)")
+    with analysis_output:
+        plot_time_series(data_cleaned, "GHI", "GHI Over Time", "Time", "GHI (W/m²)")
 
 elif analysis_choice == "Correlation Heatmap":
-    columns_to_correlate = ['GHI', 'DNI', 'DHI', 'Tamb', 'RH', 'WS', 'TModA', 'TModB']
-    plot_correlation_heatmap(data_cleaned, columns_to_correlate)
+    with analysis_output:
+        columns_to_correlate = ['GHI', 'DNI', 'DHI', 'Tamb', 'RH', 'WS', 'TModA', 'TModB']
+        plot_correlation_heatmap(data_cleaned, columns_to_correlate)
 
 elif analysis_choice == "Wind Analysis":
-    wind_rose_plot(data_cleaned)
+    with analysis_output:
+        wind_rose_plot(data_cleaned)
 
 elif analysis_choice == "Temperature Analysis":
-    plot_rh_vs_temp(data_cleaned)
+    with analysis_output:
+        plot_rh_vs_temp(data_cleaned)
 
 elif analysis_choice == "Histograms":
-    variables = ['GHI', 'DNI', 'DHI', 'WS', 'Tamb']
-    plot_histograms(data_cleaned, variables)
+    with analysis_output:
+        variables = ['GHI', 'DNI', 'DHI', 'WS', 'Tamb']
+        plot_histograms(data_cleaned, variables)
 
 elif analysis_choice == "Z-Score Analysis":
-    anomalies = z_score_analysis(data_cleaned, "GHI")
-    st.write("Number of anomalies detected:", len(anomalies))
-    st.write("Anomalies:", anomalies)
+    with analysis_output:
+        anomalies = z_score_analysis(data_cleaned, "GHI")
+        st.write("Number of anomalies detected:", len(anomalies))
+        st.write("Anomalies:", anomalies)
 
 elif analysis_choice == "Bubble Chart":
-    bubble_chart(data_cleaned)
+    with analysis_output:
+        bubble_chart(data_cleaned)
