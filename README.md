@@ -42,14 +42,3 @@ python -m venv .venv
 .venv\Scripts\activate  # For Windows
 Install required libraries:
 
-bash
-Copy code
-pip install -r requirements.txt
-Run the Jupyter Notebook to view the analysis:
-
-bash
-Copy code
-jupyter notebook notebooks/benin.ipynb
-=======
-intial commit testing 
->>>>>>> 6370623cde361e2118c8ef3012de8b10474eca19
